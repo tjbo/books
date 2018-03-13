@@ -1,0 +1,8 @@
+const BOOK = {
+    OPEN: 'BOOK_OPEN',
+    GET_REQUESTED: 'BOOK_GET_REQUESTED',
+    GET_SUCCEEDED: 'BOOK_GET_SUCCEEDED',
+    GET_FAILED: 'BOOK_GET_FAILED',
+}
+
+export { BOOK as default }
