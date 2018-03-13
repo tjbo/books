@@ -6,8 +6,17 @@ export default function BooksItemLarge({ volumeInfo, id, open, add, remove, view
         console.log('loaded')
     }
 
+    function renderPreviewLink() {
+        if (volumeInfo.previewLink) {
+            return (
+                <Card.Content>
+                    <a href={ volumeInfo.previewLink } target="_blank">Preview</a>
+                </Card.Content>
+            )
+        }
+    }
+
     function renderThumbnail() {
-        // some google API data doesn't have thumbnails, so we have to check for it
         if (volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail) {
             return (
                 <Image
@@ -20,23 +29,40 @@ export default function BooksItemLarge({ volumeInfo, id, open, add, remove, view
         }
     }
 
+    function renderDescription() {
+        if (volumeInfo.description) {
+            return (
+                <Card.Content>
+                    <div dangerouslySetInnerHTML={ { __html: volumeInfo.description } }></div>
+                </Card.Content>
+            )
+        }
+    }
+    function renderTitle() {
+        if (volumeInfo.title) {
+            return (
+                <Card.Header>
+                    <div onClick={ open() } style={ { color: 'blue' } }>{ volumeInfo.title }</div>
+                </Card.Header>
+            )
+        }
+    }
+
     return (
         <Card>
             <Card.Content>
                 { renderThumbnail() }
-                <div dangerouslySetInnerHTML={ { __html: volumeInfo.description } }></div>
+                { renderDescription() }
             </Card.Content>
             <Card.Content>
-                <Card.Header>
-                    <div onClick={ open() }>{ volumeInfo.title }</div>
-                </Card.Header>
+                { renderTitle() }
                 <Card.Meta>
                     { volumeInfo.authors && volumeInfo.authors.join(',') }
                 </Card.Meta>
                 <Card.Meta>
                     Published: { volumeInfo.publishedDate }
                 </Card.Meta>
-
+                { renderPreviewLink() }
             </Card.Content>
             <Card.Description>
                 <Button onClick={ add }> Add </Button>

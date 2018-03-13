@@ -1,6 +1,7 @@
 import BOOK from './_bookTypes'
 import { push } from 'react-router-redux'
 import axios from 'axios'
+import config from '../../config'
 
 const BookActions = {
     open(payload) {
@@ -10,14 +11,13 @@ const BookActions = {
     },
     get(payload) {
         return async (dispatch, getState) => {
+            dispatch({
+                type: BOOK.GET_REQUESTED
+            })
 
-            const url = `https://www.googleapis.com/books/v1/volumes/${payload}?key=AIzaSyDF-cyWMyQz81H2KMu0j9JRgMPKBMhWDm4`
+            const url = `https://www.googleapis.com/books/v1/volumes/${payload}?key=${config.apiKey}`
 
             try {
-                dispatch({
-                    type: BOOK.GET_REQUESTED
-                })
-
                 const response = await axios.get(url, {
                     validateStatus: function (status) {
                         return status === 200

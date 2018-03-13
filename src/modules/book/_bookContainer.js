@@ -4,6 +4,7 @@ import { Button, Card, Image } from 'semantic-ui-react'
 import BookActions from './_bookActions'
 import FavoriteActions from '../favoriteBooks/_favoriteBooksActions'
 import { push } from 'react-router-redux'
+import Loading from '../../common/loading'
 
 class BookContainer extends React.Component {
     componentWillMount() {
@@ -27,7 +28,7 @@ class BookContainer extends React.Component {
 
     renderBook() {
         if (this.props.isLoading) {
-            return <div>Loading</div>
+            return <Loading />
         } else if (this.props.book) {
             const { volumeInfo } = this.props.book
             return (
@@ -70,6 +71,7 @@ function mapStateToProps(state, ownProps) {
     console.log(ownProps)
     return {
         book: state.book.book,
+        isLoading: state.book.isLoading,
         id: ownProps.match.params.id
     }
 }

@@ -19,6 +19,16 @@ export default function BooksItemSmall({ volumeInfo, id, open, add, remove, view
         }
     }
 
+    function renderRating() {
+        if (volumeInfo.averageRating) {
+            return (
+                <Card.Meta>
+                    Avg Rating: { volumeInfo.averageRating }
+                </Card.Meta>
+            )
+        }
+    }
+
     return (
         <Card>
             <Card.Content>
@@ -34,10 +44,11 @@ export default function BooksItemSmall({ volumeInfo, id, open, add, remove, view
                 <Card.Meta>
                     Published: { volumeInfo.publishedDate }
                 </Card.Meta>
+                { renderRating() }
             </Card.Content>
             <Card.Description>
                 <Button onClick={ add }> Add </Button>
-                { volumeInfo.averageRating }
+
             </Card.Description>
         </Card>
     )

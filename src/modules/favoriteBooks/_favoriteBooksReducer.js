@@ -16,6 +16,12 @@ export default function FavoriteBooksReducer(state = initialState, action) {
                 error: ''
             }
         }
+        case FAVORITE_BOOKS.GET_SUCCEEDED: {
+            return {
+                ...state,
+                isLoading: false
+            }
+        }
         case FAVORITE_BOOKS.GET_FAILED: {
             return {
                 isLoading: false,

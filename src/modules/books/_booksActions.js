@@ -3,26 +3,14 @@ import BOOKS from './_booksTypes'
 import axios from 'axios'
 import queryString from 'query-string'
 import shortid from 'shortid'
+import config from '../../config'
 
 const BooksActions = {
-    init() {
-        return (dispatch, getState) => {
-            const { searchTerm, orderBy, view } = queryString.parse(getState().router.location.hash)
-            dispatch({
-                type: BOOKS.INIT,
-                payload: {
-                    searchTerm, orderBy, view
-                }
-            })
-            dispatch(this.get())
-        }
-    },
     get() {
         return async (dispatch, getState) => {
             const state = getState().books
 
             if (state.searchTerm) {
-
                 // the request will be "stale" as this triggers on keypress in searchbar, so just cancel the last request 
                 if (state.cancelableRequest) {
                     state.cancelableRequest()
@@ -30,7 +18,7 @@ const BooksActions = {
 
                 // make a new cancelToken for each request
                 const CancelToken = axios.CancelToken
-                const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=AIzaSyDF-cyWMyQz81H2KMu0j9JRgMPKBMhWDm4`
+                const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=${config.apiKey}`
 
                 try {
                     const response = await axios.get(url, {

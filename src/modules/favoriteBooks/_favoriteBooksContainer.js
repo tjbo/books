@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { List, Sticky } from 'semantic-ui-react'
+import { List, Container } from 'semantic-ui-react'
 import FavoriteBooksItem from './favoriteBooksItem'
 import FavoritesActions from './_favoriteBooksActions'
+import Loading from '../../common/loading'
 
 class FavoriteBooks extends React.Component {
     componentWillMount() {
@@ -15,6 +16,7 @@ class FavoriteBooks extends React.Component {
                 return (
                     <FavoriteBooksItem
                         { ...favorite[1] }
+                        key={ favorite[0] }
                         remove={ () => this.props.remove(favorite[1]) }
                     />
                 )
@@ -22,32 +24,32 @@ class FavoriteBooks extends React.Component {
         )
     }
 
-    renderDefaultMessage() {
-        return <List.Item>Nothing to display</List.Item>
+    renderMessage() {
+        if (this.props.error) {
+            return <List.Item>{ this.props.error }</List.Item>
+        } else if (this.props.isLoading) {
+            return <List.Item><Loading /></List.Item>
+        } else {
+            return <List.Item>No favs added.</List.Item>
+        }
     }
 
     renderList() {
-        if (this.props.error) {
-            return <div>{ this.props.error }</div>
-        } else if (this.props.isLoading) {
-            return <div>Loading</div>
-        } else {
-            return (
-                <List divided relaxed verticalAlign="middle">
-                    <List.Header>My Fav Books</List.Header>
-                    {
-                        (this.props.favorites.size > 0 ? this.renderFavouriteBooks() : this.renderDefaultMessage())
-                    }
-                </List>
-            )
-        }
+        return (
+            <List divided relaxed verticalAlign="middle">
+                <List.Header><h2>My Fav Books</h2></List.Header>
+                {
+                    (this.props.favorites.size > 0 ? this.renderFavouriteBooks() : this.renderMessage())
+                }
+            </List>
+        )
     }
 
     render() {
         return (
-            <div style={ { position: 'fixed', top: 0 } }>
+            <Container style={ { position: 'fixed', top: '5em', width: 'auto' } }>
                 { this.renderList() }
-            </div>
+            </Container>
         )
     }
 }
@@ -55,7 +57,8 @@ class FavoriteBooks extends React.Component {
 function mapStateToProps(state) {
     return {
         favorites: state.favoriteBooks.favorites,
-        error: state.favoriteBooks.error
+        error: state.favoriteBooks.error,
+        isLoading: state.favoriteBooks.isLoading
     }
 }
 

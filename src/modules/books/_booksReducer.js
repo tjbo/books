@@ -3,7 +3,7 @@ import { sortBy } from 'lodash'
 import queryString from 'query-string'
 
 // get initial state from URL
-const { searchTerm, orderBy, view } = queryString.parse(window.location.hash)
+const { searchTerm = '', orderBy = 'asc', view = 'list' } = queryString.parse(window.location.hash)
 
 const initialState = {
     books: [],
@@ -17,7 +17,7 @@ const initialState = {
 
 function sortBooks(books, orderBy) {
     function sort(key) {
-        return sortBy(books, [function (book) {
+        return sortBy(books, [(book) => {
             return book.volumeInfo[key]
         }])
     }
@@ -39,23 +39,13 @@ export default function BooksReducer(state = initialState, action) {
     const { payload, type } = action
 
     switch (type) {
-        case BOOKS.INIT: {
-            return {
-                ...state,
-                books: [],
-                isLoading: false,
-                orderBy: payload.orderBy || '', // empty strings, because the #hash of uri will display 'undefined'
-                searchTerm: payload.searchTerm || '',
-                view: payload.view || ''
-            }
-        }
         case BOOKS.GET_REQUESTED: {
             return {
                 ...state,
                 books: [],
                 isLoading: true,
                 error: '',
-                cancelableRequest: payload //tracks the request, in case a new one comes, can cancel it
+                cancelableRequest: payload // tracks the current request, if a new one comes, it gets canceled in actions 
             }
         }
         case BOOKS.GET_SUCCEEDED: {

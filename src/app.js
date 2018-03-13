@@ -8,7 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { Container, Grid, Rail, Segment } from 'semantic-ui-react'
 import queryString from 'query-string'
-
+import Header from './common/header'
 
 // source
 import Modules from './modules'
@@ -51,9 +51,10 @@ export default function App() {
     return (
         <Provider store={ store }>
             <ConnectedRouter history={ history }>
-                <Container>
-                    <Grid centered columns={ 2 } >
-                        <Grid.Row>
+                <Container style={ { height: '100%' } } >
+                    <Header />
+                    <Grid centered columns={ 2 } style={ { height: '100%' } }>
+                        <Grid.Row style={ { height: '100%' } }>
                             <Grid.Column width={ 12 }>
                                 <Switch>
                                     <Route exact path="/" component={ Modules.Books } />

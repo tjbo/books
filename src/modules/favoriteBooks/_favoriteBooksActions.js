@@ -1,4 +1,5 @@
 import FAVORITE_BOOKS from './_favoriteBooksTypes'
+import config from '../../config'
 import axios from 'axios'
 import queryString from 'query-string'
 import booksActions from '../books/_booksActions'
@@ -11,22 +12,19 @@ const FavoriteBooksActions = {
             const params = queryString.parse(getState().router.location.hash, { arrayFormat: 'bracket' })
 
             if (params.favorites) {
+                dispatch({
+                    type: FAVORITE_BOOKS.GET_REQUESTED
+                })
 
                 const requests = []
 
                 for (let favorite of params.favorites) {
-
-                    const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=AIzaSyDF-cyWMyQz81H2KMu0j9JRgMPKBMhWDm4`
-
+                    const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=${config.apiKey}`
                     requests.push(await axios.get(url, {
                         validateStatus: function (status) {
                             return status === 200
                         }
                     }))
-
-                    dispatch({
-                        type: FAVORITE_BOOKS.GET_REQUESTED
-                    })
                 }
 
                 try {
@@ -38,6 +36,10 @@ const FavoriteBooksActions = {
                         }
                     }
 
+                    dispatch({
+                        type: FAVORITE_BOOKS.GET_SUCCEEDED
+                    })
+
                 } catch (error) {
                     dispatch({
                         type: FAVORITE_BOOKS.GET_FAILED,
@@ -46,8 +48,6 @@ const FavoriteBooksActions = {
                     console.error(error)
                 }
             }
-
-            return null
         }
     },
     add(payload) {

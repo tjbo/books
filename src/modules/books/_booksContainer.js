@@ -6,69 +6,73 @@ import FavoriteBooksActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 import BooksItemSmall from './booksItemSmall'
 import BooksItemLarge from './booksItemLarge'
-import { Card, Container, Search, Select, Segment } from 'semantic-ui-react'
+import GridRow, { Grid, Card, Container, Search, Select, Segment } from 'semantic-ui-react'
 
 class BooksContainer extends React.Component {
     componentWillMount() {
-        this.props.init()
         this.props.get()
     }
 
     renderSearchBar() {
         return (
-            <Segment.Group horizontal>
-                <Search
-                    fluid
-                    input="text"
-                    icon="search"
-                    value={ this.props.searchTerm }
-                    open={ false }
-                    loading={ this.props.isLoading }
-                    onSearchChange={ (event, { value }) => this.props.setSearchTerm(value) }
-                />
+            <Grid>
+                <Grid.Row>
+                    <Grid.Column width={ 8 }>
+                        <Search
+                            input={ { fluid: true } }
+                            value={ this.props.searchTerm }
+                            open={ false }
+                            loading={ this.props.isLoading }
+                            onSearchChange={ (event, { value }) => this.props.setSearchTerm(value) }
+                        />
+                    </Grid.Column>
+                    <Grid.Column width={ 4 }>
+                        <Select
+                            placeholder="View"
+                            value={ this.props.view }
+                            options={ [
+                                {
+                                    key: 'list',
+                                    value: 'list',
+                                    text: 'As List'
+                                },
+                                {
+                                    key: 'grid',
+                                    value: 'grid',
+                                    text: 'As Grid'
+                                }
+                            ] }
+                            onChange={ (event, { value }) => this.props.setView(value) }
+                        />
+                    </Grid.Column>
+                    <Grid.Column width={ 4 }>
+                        <Select
+                            placeholder="Order By"
+                            value={ this.props.orderBy }
+                            options={ [{
+                                key: 'asc',
+                                value: 'asc',
+                                text: 'Title'
+                            }, {
+                                key: 'desc',
+                                value: 'desc',
+                                text: 'Title (Reverse)'
+                            }, {
+                                key: 'oldest',
+                                value: 'oldest',
+                                text: 'Oldest to Newest'
+                            }, {
+                                key: 'newest',
+                                value: 'newest',
+                                text: 'Newest to Oldest'
+                            }
 
-                <Select
-                    placeholder="View"
-                    value={ this.props.view }
-                    options={ [
-                        {
-                            key: 'list',
-                            value: 'list',
-                            text: 'As List'
-                        },
-                        {
-                            key: 'grid',
-                            value: 'grid',
-                            text: 'As Grid'
-                        }
-                    ] }
-                    onChange={ (event, { value }) => this.props.setView(value) }
-                />
-                <Select
-                    placeholder="Order By"
-                    value={ this.props.orderBy }
-                    options={ [{
-                        key: 'asc',
-                        value: 'asc',
-                        text: 'Title'
-                    }, {
-                        key: 'desc',
-                        value: 'desc',
-                        text: 'Title (Reverse)'
-                    }, {
-                        key: 'oldest',
-                        value: 'oldest',
-                        text: 'Oldest to Newest'
-                    }, {
-                        key: 'newest',
-                        value: 'newest',
-                        text: 'Newest to Oldest'
-                    }
-
-                    ] }
-                    onChange={ (event, { value }) => this.props.setOrderBy(value) }
-                />
-            </Segment.Group>
+                            ] }
+                            onChange={ (event, { value }) => this.props.setOrderBy(value) }
+                        />
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid >
         )
     }
 
@@ -92,7 +96,7 @@ class BooksContainer extends React.Component {
         if (this.props.error) {
             return <div>{ this.props.error } </div>
         } else if (this.props.isLoading) {
-            return <div>loading</div>
+            return <Loading />
         } else if (this.props.books.length > 1) {
             return (
                 <Container>
@@ -111,8 +115,12 @@ class BooksContainer extends React.Component {
     render() {
         return (
             <Container fluid>
-                { this.renderSearchBar() }
-                { this.renderBooks() }
+                <Container>
+                    { this.renderSearchBar() }
+                </Container>
+                <Container>
+                    { this.renderBooks() }
+                </Container>
             </Container>
         )
     }
