@@ -19,7 +19,6 @@ const initialState = {
     }
 }
 
-
 describe('books actions', () => {
     let store, mock
 

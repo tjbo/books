@@ -1,30 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { push } from 'react-router-redux'
+import { Button, Container } from 'semantic-ui-react'
 import BookActions from './_bookActions'
 import FavoriteActions from '../favoriteBooks/_favoriteBooksActions'
 import BooksItem from '../books/booksItem'
-import { push } from 'react-router-redux'
 import Loading from '../../common/loading'
 
 class BookContainer extends React.Component {
     componentWillMount() {
         this.props.get(this.props.id)
-    }
-
-    renderThumbnail() {
-        const { volumeInfo } = this.props.book
-
-        // some google API data doesn't have thumbnails, so we have to check for it
-        if (volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail) {
-            return (
-                <Image
-                    size='small'
-                    src={ volumeInfo.imageLinks.thumbnail }
-                    floated='left'
-                />
-            )
-        }
     }
 
     renderBook() {
@@ -34,7 +19,7 @@ class BookContainer extends React.Component {
             const props = {
                 ...this.props.book,
                 add: () => this.props.add(this.props.book),
-                size: 'large'
+                size: 'full'
             }
             return <BooksItem { ...props } />
         }
@@ -42,10 +27,10 @@ class BookContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <Button onClick={ () => this.props.goBack() }>Go Back</Button>
                 { this.renderBook() }
-            </div>
+            </Container>
         )
     }
 }

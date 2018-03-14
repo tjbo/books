@@ -53,15 +53,15 @@ export default function App() {
             <ConnectedRouter history={ history }>
                 <Container style={ { height: '100%' } } >
                     <Header />
-                    <Grid centered columns={ 2 } style={ { height: '100%' } }>
+                    <Grid centered relaxed columns={ 2 } style={ { height: '100%' } }>
                         <Grid.Row style={ { height: '100%' } }>
-                            <Grid.Column width={ 12 }>
+                            <Grid.Column width={ 10 } style={ { marginTop: '3em' } }>
                                 <Switch>
                                     <Route exact path="/" component={ Modules.Books } />
                                     <Route exact path="/book/:id" component={ Modules.Book } />
                                 </Switch>
                             </Grid.Column>
-                            <Grid.Column width={ 4 }>
+                            <Grid.Column width={ 6 } style={ { marginTop: '3em' } }>
                                 <Modules.FavoriteBooks />
                             </Grid.Column>
                         </Grid.Row>

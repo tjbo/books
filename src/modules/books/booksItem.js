@@ -38,7 +38,14 @@ export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact'
         if (volumeInfo.title && typeof open === 'function') {
             return (
                 <Card.Header>
-                    <Header as="h3" color="blue" onClick={ open() }>{ volumeInfo.title }</Header>
+                    <Header
+                        as="h3"
+                        color="blue"
+                        onClick={ open() }
+                        style={ { cursor: 'pointer' } }
+                    >
+                        { volumeInfo.title }
+                    </Header>
                 </Card.Header>
             )
         } else {
@@ -72,9 +79,11 @@ export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact'
 
     function renderDate() {
         if (volumeInfo.publishedDate) {
-            <Card.Meta>
-                Published: { volumeInfo.publishedDate }
-            </Card.Meta>
+            return (
+                <Card.Meta>
+                    Published: { volumeInfo.publishedDate }
+                </Card.Meta>
+            )
         }
     }
 
@@ -92,8 +101,14 @@ export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact'
                 { renderPreviewLink() }
             </Card.Content>
             <Card.Description>
-                <Button onClick={ add }> Add </Button>
+                <Button onClick={ add }
+                    floated={ (size === 'full' ? 'right' : 'left') }
+                    color="green"
+                    style={ { margin: '15px' } }
+                >
+                    Add
+                </Button>
             </Card.Description>
-        </Card>
+        </Card >
     )
 }

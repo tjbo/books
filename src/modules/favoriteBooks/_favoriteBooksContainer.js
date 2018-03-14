@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { List, Container } from 'semantic-ui-react'
+import { List, Container, Message } from 'semantic-ui-react'
 import FavoriteBooksItem from './favoriteBooksItem'
 import FavoritesActions from './_favoriteBooksActions'
 import Loading from '../../common/loading'
@@ -26,11 +26,19 @@ class FavoriteBooks extends React.Component {
 
     renderMessage() {
         if (this.props.error) {
-            return <List.Item>{ this.props.error }</List.Item>
+            return (
+                <List.Item>
+                    <Message negative>{ this.props.error }</Message>
+                </List.Item>
+            )
         } else if (this.props.isLoading) {
             return <List.Item><Loading /></List.Item>
         } else {
-            return <List.Item>No favs added.</List.Item>
+            return (
+                <List.Item>
+                    <Message>No favorites added.</Message>
+                </List.Item>
+            )
         }
     }
 
@@ -47,7 +55,7 @@ class FavoriteBooks extends React.Component {
 
     render() {
         return (
-            <Container style={ { position: 'fixed', top: '5em', width: 'auto' } }>
+            <Container>
                 { this.renderList() }
             </Container>
         )

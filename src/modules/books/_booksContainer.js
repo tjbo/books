@@ -5,7 +5,7 @@ import BookActions from '../book/_bookActions'
 import FavoriteBooksActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 import BooksItem from './booksItem'
-import GridRow, { Grid, Card, Container, Search, Select, Segment } from 'semantic-ui-react'
+import GridRow, { Grid, Card, Container, Message, Search, Select, Segment } from 'semantic-ui-react'
 
 class BooksContainer extends React.Component {
     componentWillMount() {
@@ -16,7 +16,7 @@ class BooksContainer extends React.Component {
         return (
             <Grid>
                 <Grid.Row>
-                    <Grid.Column width={ 8 }>
+                    <Grid.Column width={ 16 }>
                         <Search
                             input={ { fluid: true } }
                             value={ this.props.searchTerm }
@@ -28,9 +28,10 @@ class BooksContainer extends React.Component {
                             } }
                         />
                     </Grid.Column>
-                    <Grid.Column width={ 4 }>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column width={ 6 }>
                         <Select
-                            placeholder="View"
                             value={ this.props.view }
                             options={ [
                                 {
@@ -47,28 +48,27 @@ class BooksContainer extends React.Component {
                             onChange={ (event, { value }) => this.props.setView(value) }
                         />
                     </Grid.Column>
-                    <Grid.Column width={ 4 }>
+                    <Grid.Column width={ 6 }>
                         <Select
-                            placeholder="Order By"
                             value={ this.props.orderBy }
-                            options={ [{
-                                key: 'asc',
-                                value: 'asc',
-                                text: 'Title'
-                            }, {
-                                key: 'desc',
-                                value: 'desc',
-                                text: 'Title (Reverse)'
-                            }, {
-                                key: 'oldest',
-                                value: 'oldest',
-                                text: 'Oldest to Newest'
-                            }, {
-                                key: 'newest',
-                                value: 'newest',
-                                text: 'Newest to Oldest'
-                            }
-
+                            options={ [
+                                {
+                                    key: 'asc',
+                                    value: 'asc',
+                                    text: 'Title'
+                                }, {
+                                    key: 'desc',
+                                    value: 'desc',
+                                    text: 'Title (Reverse)'
+                                }, {
+                                    key: 'oldest',
+                                    value: 'oldest',
+                                    text: 'Oldest to Newest'
+                                }, {
+                                    key: 'newest',
+                                    value: 'newest',
+                                    text: 'Newest to Oldest'
+                                }
                             ] }
                             onChange={ (event, { value }) => this.props.setOrderBy(value) }
                         />
@@ -106,7 +106,11 @@ class BooksContainer extends React.Component {
                 </Container>
             )
         } else {
-            return <div>No books to display.</div>
+            return (
+                <Container>
+                    <Message>No books to display.</Message>
+                </Container>
+            )
         }
     }
 
@@ -116,7 +120,7 @@ class BooksContainer extends React.Component {
                 <Container>
                     { this.renderSearchBar() }
                 </Container>
-                <Container>
+                <Container style={ { marginTop: '20px' } }>
                     { this.renderBooks() }
                 </Container>
             </Container>
