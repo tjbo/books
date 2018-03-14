@@ -28,7 +28,13 @@ class BookContainer extends React.Component {
     render() {
         return (
             <Container>
-                <Button onClick={ () => this.props.goBack() }>Go Back</Button>
+                <Button
+                    labelPosition="left"
+                    icon="left chevron"
+                    content="Back"
+                    color="blue"
+                    onClick={ () => this.props.goBack() }
+                />
                 { this.renderBook() }
             </Container>
         )
