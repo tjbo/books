@@ -18,7 +18,7 @@ const BooksActions = {
 
                 // make a new cancelToken for each request
                 const CancelToken = axios.CancelToken
-                const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=${config.apiKey}`
+                const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=${config.apiKey1}`
 
                 try {
                     const response = await axios.get(url, {

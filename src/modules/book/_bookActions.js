@@ -15,7 +15,7 @@ const BookActions = {
                 type: BOOK.GET_REQUESTED
             })
 
-            const url = `https://www.googleapis.com/books/v1/volumes/${payload}?key=${config.apiKey}`
+            const url = `https://www.googleapis.com/books/v1/volumes/${payload}?key=${config.apiKey1}`
 
             try {
                 const response = await axios.get(url, {
@@ -23,7 +23,6 @@ const BookActions = {
                         return status === 200
                     }
                 })
-
                 if (response.status === 200) {
                     dispatch({
                         type: BOOK.GET_SUCCEEDED,

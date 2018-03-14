@@ -19,7 +19,7 @@ const FavoriteBooksActions = {
                 const requests = []
 
                 for (let favorite of params.favorites) {
-                    const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=${config.apiKey}`
+                    const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=${config.apiKey2}`
                     requests.push(await axios.get(url, {
                         validateStatus: function (status) {
                             return status === 200
