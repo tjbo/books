@@ -4,8 +4,7 @@ import BooksActions from './_booksActions'
 import BookActions from '../book/_bookActions'
 import FavoriteBooksActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
-import BooksItemSmall from './booksItemSmall'
-import BooksItemLarge from './booksItemLarge'
+import BooksItem from './booksItem'
 import GridRow, { Grid, Card, Container, Search, Select, Segment } from 'semantic-ui-react'
 
 class BooksContainer extends React.Component {
@@ -23,7 +22,10 @@ class BooksContainer extends React.Component {
                             value={ this.props.searchTerm }
                             open={ false }
                             loading={ this.props.isLoading }
-                            onSearchChange={ (event, { value }) => this.props.setSearchTerm(value) }
+                            onSearchChange={ (event, { value }) => {
+                                this.props.setSearchTerm(value)
+                                this.props.get()
+                            } }
                         />
                     </Grid.Column>
                     <Grid.Column width={ 4 }>
@@ -82,14 +84,10 @@ class BooksContainer extends React.Component {
             key: book.id,
             add: () => this.props.add(book),
             open: () => this.props.open.bind(this, book),
-            remove: this.props.remove,
+            size: (this.props.view === 'list') ? 'full' : 'compact'
         }
 
-        if (this.props.view === 'grid') {
-            return <BooksItemSmall { ...props } />
-        } else {
-            return <BooksItemLarge { ...props } />
-        }
+        return <BooksItem { ...props } />
     }
 
     renderBooks() {
@@ -150,9 +148,6 @@ function mapDispatchToProps(dispatch) {
         },
         add(payload) {
             dispatch(FavoriteBooksActions.add(payload))
-        },
-        remove(payload) {
-            dispatch(FavoriteBooksActions.remove(payload))
         },
         setOrderBy(payload) {
             dispatch(BooksActions.setOrderBy(payload))

@@ -1,27 +1,33 @@
 import BOOK from './_bookTypes'
-const initialState = {
+
+export const initialState = {
     isLoading: false,
-    book: null
+    book: null,
+    error: ''
 }
 
 export default function BookReducer(state = initialState, action) {
     const { payload, type } = action
     switch (type) {
-        case BOOK.OPEN: {
-            return {
-                id: payload
-            }
-        }
         case BOOK.GET_REQUESTED: {
             return {
-                book: '',
-                isLoading: true
+                book: null,
+                isLoading: true,
+                error: ''
             }
         }
         case BOOK.GET_SUCCEEDED: {
             return {
                 book: payload,
-                isLoading: false
+                isLoading: false,
+                error: ''
+            }
+        }
+        case BOOK.GET_FAILED: {
+            return {
+                book: null,
+                isLoading: false,
+                error: payload
             }
         }
         default: {

@@ -5,9 +5,9 @@ import queryString from 'query-string'
 // get initial state from URL
 const { searchTerm = '', orderBy = 'asc', view = 'list' } = queryString.parse(window.location.hash)
 
-const initialState = {
+export const initialState = {
     books: [],
-    cancelableRequest: () => { },
+    cancelableRequest: null,
     isLoading: false,
     orderBy,
     searchTerm,
@@ -15,7 +15,7 @@ const initialState = {
     error: ''
 }
 
-function sortBooks(books, orderBy) {
+export function sortBooks(books, orderBy) {
     function sort(key) {
         return sortBy(books, [(book) => {
             return book.volumeInfo[key]
@@ -45,7 +45,7 @@ export default function BooksReducer(state = initialState, action) {
                 books: [],
                 isLoading: true,
                 error: '',
-                cancelableRequest: payload // tracks the current request, if a new one comes, it gets canceled in actions 
+                cancelableRequest: payload // tracks the current request, if a new one comes, it gets canceled in 
             }
         }
         case BOOKS.GET_SUCCEEDED: {

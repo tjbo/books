@@ -1,6 +1,7 @@
 import FAVORITE_BOOKS from './_favoriteBooksTypes'
 
-const initialState = {
+export const initialState = {
+    error: '',
     isLoading: false,
     favorites: new Map()
 }
