@@ -6,8 +6,7 @@ import bookData from '../../../__mocks__/modules/book/book'
 import MockAdapter from 'axios-mock-adapter'
 import thunk from 'redux-thunk'
 import config from '../../../config'
-
-var axios = require('axios');
+import axios from 'axios'
 
 const mockStore = configureMockStore([thunk])
 
@@ -43,7 +42,8 @@ describe('books actions', () => {
                 {
                     type: BOOK.GET_SUCCEEDED,
                     payload: bookData
-                }]
+                }
+            ]
 
             expect(store.getActions()).toEqual(expectedActions)
             done()

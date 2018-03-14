@@ -102,7 +102,7 @@ class BooksContainer extends React.Component {
         } else {
             return (
                 <Container>
-                    <Message>No books to display.</Message>
+                    <Message info>No books to display.</Message>
                 </Container>
             )
         }

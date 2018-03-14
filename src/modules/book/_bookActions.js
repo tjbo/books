@@ -6,7 +6,7 @@ import config from '../../config'
 const BookActions = {
     open(payload) {
         return (dispatch) => {
-            dispatch(push(`book/${payload.id}`))
+            dispatch(push(`/book/${payload.id}`))
         }
     },
     get(payload) {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { List, Container, Message } from 'semantic-ui-react'
 import FavoriteBooksItem from './favoriteBooksItem'
 import FavoritesActions from './_favoriteBooksActions'
+import BookActions from '../book/_bookActions'
 import Loading from '../../common/loading'
 
 class FavoriteBooks extends React.Component {
@@ -16,6 +17,7 @@ class FavoriteBooks extends React.Component {
                 return (
                     <FavoriteBooksItem
                         { ...favorite[1] }
+                        open={ () => this.props.open.bind(this, favorite[1]) }
                         key={ favorite[0] }
                         remove={ () => this.props.remove(favorite[1]) }
                     />
@@ -36,7 +38,7 @@ class FavoriteBooks extends React.Component {
         } else {
             return (
                 <List.Item>
-                    <Message>No favorites added.</Message>
+                    <Message size="small" info>No favorites added.</Message>
                 </List.Item>
             )
         }
@@ -45,7 +47,7 @@ class FavoriteBooks extends React.Component {
     renderList() {
         return (
             <List divided relaxed verticalAlign="middle">
-                <List.Header><h2>My Fav Books</h2></List.Header>
+                <List.Header>Favorites</List.Header>
                 {
                     (this.props.favorites.size > 0 ? this.renderFavouriteBooks() : this.renderMessage())
                 }
@@ -77,6 +79,9 @@ function mapDispatchToProps(dispatch) {
         },
         getAll(payload) {
             dispatch(FavoritesActions.getAll())
+        },
+        open(payload) {
+            dispatch(BookActions.open(payload))
         }
     }
 }
