@@ -1,6 +1,5 @@
 import React from 'react'
 import sinon from 'sinon'
-import { List } from 'semantic-ui-react'
 import Adapter from 'enzyme-adapter-react-15'
 import { shallow, mount } from 'enzyme'
 import { configure } from 'enzyme'

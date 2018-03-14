@@ -36,7 +36,6 @@ const BookActions = {
                     type: BOOK.GET_FAILED,
                     payload: 'There was a problem requesting the data.'
                 })
-                console.error(error)
             }
         }
 

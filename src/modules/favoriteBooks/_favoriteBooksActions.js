@@ -45,25 +45,20 @@ const FavoriteBooksActions = {
                         type: FAVORITE_BOOKS.GET_FAILED,
                         payload: 'There was a problem requesting the data.'
                     })
-                    console.error(error)
                 }
             }
         }
     },
     add(payload) {
-        return (dispatch) => {
-            dispatch({
-                type: FAVORITE_BOOKS.ADD,
-                payload
-            })
+        return {
+            type: FAVORITE_BOOKS.ADD,
+            payload
         }
     },
     remove(payload) {
-        return (dispatch) => {
-            dispatch({
-                type: FAVORITE_BOOKS.REMOVE,
-                payload
-            })
+        return {
+            type: FAVORITE_BOOKS.REMOVE,
+            payload
         }
     }
 }
