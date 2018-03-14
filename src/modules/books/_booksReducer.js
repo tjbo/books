@@ -45,7 +45,7 @@ export default function BooksReducer(state = initialState, action) {
                 books: [],
                 isLoading: true,
                 error: '',
-                cancelableRequest: payload // tracks the current request, if a new one comes, it gets canceled in 
+                cancelableRequest: payload // tracks the current request, if a new one comes, this is used in the action 
             }
         }
         case BOOKS.GET_SUCCEEDED: {

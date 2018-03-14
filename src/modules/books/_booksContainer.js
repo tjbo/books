@@ -30,7 +30,7 @@ class BooksContainer extends React.Component {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                    <Grid.Column width={ 6 }>
+                    <Grid.Column width={ 8 }>
                         <Select
                             value={ this.props.view }
                             options={ [
@@ -48,7 +48,7 @@ class BooksContainer extends React.Component {
                             onChange={ (event, { value }) => this.props.setView(value) }
                         />
                     </Grid.Column>
-                    <Grid.Column width={ 6 }>
+                    <Grid.Column width={ 8 }>
                         <Select
                             value={ this.props.orderBy }
                             options={ [
@@ -92,7 +92,7 @@ class BooksContainer extends React.Component {
 
     renderBooks() {
         if (this.props.error) {
-            return <div>{ this.props.error } </div>
+            return <Message negative>{ this.props.error } </Message>
         } else if (this.props.isLoading) {
             return <Loading />
         } else if (this.props.books.length > 1) {

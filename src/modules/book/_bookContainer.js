@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { Button, Container } from 'semantic-ui-react'
 import BookActions from './_bookActions'
-import FavoriteActions from '../favoriteBooks/_favoriteBooksActions'
 import BooksItem from '../books/booksItem'
+import FavoriteActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 
 class BookContainer extends React.Component {
@@ -39,7 +39,7 @@ function mapStateToProps(state, ownProps) {
     return {
         book: state.book.book,
         isLoading: state.book.isLoading,
-        id: ownProps.match.params.id
+        id: ownProps.match.params.id // the id here is coming from the router
     }
 }
 
