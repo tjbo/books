@@ -1,8 +1,6 @@
 
 import BOOKS from './_booksTypes'
 import axios from 'axios'
-import queryString from 'query-string'
-import shortid from 'shortid'
 import config from '../../config'
 
 const BooksActions = {

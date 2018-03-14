@@ -2,23 +2,21 @@ import FAVORITE_BOOKS from './_favoriteBooksTypes'
 import config from '../../config'
 import axios from 'axios'
 import queryString from 'query-string'
-import booksActions from '../books/_booksActions'
 
 const FavoriteBooksActions = {
     getAll() {
         return async (dispatch, getState) => {
 
-            const routerState = getState().router.location.hash
-            const params = queryString.parse(getState().router.location.hash, { arrayFormat: 'bracket' })
+            const paramsFromRouter = queryString.parse(getState().router.location.hash, { arrayFormat: 'bracket' })
 
-            if (params.favorites) {
+            if (paramsFromRouter.favorites) {
                 dispatch({
                     type: FAVORITE_BOOKS.GET_REQUESTED
                 })
 
                 const requests = []
 
-                for (let favorite of params.favorites) {
+                for (let favorite of paramsFromRouter.favorites) {
                     const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=${config.apiKey2}`
                     requests.push(await axios.get(url, {
                         validateStatus: function (status) {

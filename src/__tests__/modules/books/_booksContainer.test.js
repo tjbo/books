@@ -15,7 +15,7 @@ const shallowWithStore = (component, store) => {
     return shallow(component, { context });
 }
 
-describe('ConnectedShowBox', () => {
+describe('books container', () => {
     it("should render isLoading", () => {
         const testState = {
             books: {
@@ -28,7 +28,7 @@ describe('ConnectedShowBox', () => {
         const component = shallowWithStore(<BooksContainer />, store);
 
         expect(typeof component).toBe('object')
-        expect(component.dive().find('Grid')).toHaveLength(1)
+        expect(component.dive().find('Segment')).toHaveLength(2)
         expect(component.dive().find('Search')).toHaveLength(1)
         expect(component.dive().find('Select')).toHaveLength(2)
         expect(component.dive().find('Container')).toHaveLength(3)
@@ -47,7 +47,7 @@ describe('ConnectedShowBox', () => {
         const component = shallowWithStore(<BooksContainer />, store);
 
         expect(typeof component).toBe('object')
-        expect(component.dive().find('Grid')).toHaveLength(1)
+        expect(component.dive().find('Segment')).toHaveLength(2)
         expect(component.dive().find('Search')).toHaveLength(1)
         expect(component.dive().find('Select')).toHaveLength(2)
         expect(component.dive().find('Container')).toHaveLength(4)

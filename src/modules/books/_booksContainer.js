@@ -5,7 +5,7 @@ import BookActions from '../book/_bookActions'
 import FavoriteBooksActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 import BooksItem from './booksItem'
-import GridRow, { Grid, Card, Container, Message, Search, Select, Segment } from 'semantic-ui-react'
+import { Card, Container, Message, Search, Select, Segment } from 'semantic-ui-react'
 
 class BooksContainer extends React.Component {
     componentWillMount() {

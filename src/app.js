@@ -6,7 +6,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 import createHistory from 'history/createBrowserHistory'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
-import { Container, Grid, Rail, Segment } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 import queryString from 'query-string'
 import Header from './common/header'
 
