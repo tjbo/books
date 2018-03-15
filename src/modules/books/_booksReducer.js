@@ -8,11 +8,11 @@ const { searchTerm = '', orderBy = 'asc', view = 'list' } = queryString.parse(wi
 export const initialState = {
     books: [],
     cancelableRequest: null,
+    error: '',
     isLoading: false,
     orderBy,
     searchTerm,
-    view,
-    error: ''
+    view
 }
 
 export function sortBooks(books, orderBy) {
@@ -43,25 +43,25 @@ export default function BooksReducer(state = initialState, action) {
             return {
                 ...state,
                 books: [],
-                isLoading: true,
                 error: '',
-                cancelableRequest: payload // tracks the current request, if a new one comes, this is used in the action 
+                isLoading: true,
+                cancelableRequest: payload // tracks the current request, if a new one comes, we cancel in the get() action 
             }
         }
         case BOOKS.GET_SUCCEEDED: {
             return {
                 ...state,
                 books: sortBooks(payload.books, state.orderBy),
-                isLoading: false,
-                error: ''
+                error: '',
+                isLoading: false
             }
         }
         case BOOKS.GET_FAILED: {
             return {
                 ...state,
-                isLoading: false,
                 books: [],
-                error: payload
+                error: payload,
+                isLoading: false
             }
         }
         case BOOKS.SET_SEARCH_TERM: {

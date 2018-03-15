@@ -4,12 +4,13 @@ import axios from 'axios'
 import queryString from 'query-string'
 
 const FavoriteBooksActions = {
-    getAll() {
+    get() {
         return async (dispatch, getState) => {
 
             const paramsFromRouter = queryString.parse(getState().router.location.hash, { arrayFormat: 'bracket' })
 
             if (paramsFromRouter.favorites) {
+
                 dispatch({
                     type: FAVORITE_BOOKS.GET_REQUESTED
                 })

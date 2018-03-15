@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Card, Container, Message, Search, Select, Segment } from 'semantic-ui-react'
 import BooksActions from './_booksActions'
 import BookActions from '../book/_bookActions'
 import FavoriteBooksActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 import BooksItem from './booksItem'
-import { Card, Container, Message, Search, Select, Segment } from 'semantic-ui-react'
 
 class BooksContainer extends React.Component {
     componentWillMount() {
@@ -120,6 +121,21 @@ class BooksContainer extends React.Component {
             </Container>
         )
     }
+}
+
+BooksContainer.propTypes = {
+    add: PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired,
+    error: PropTypes.string.isRequired,
+    get: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    open: PropTypes.func.isRequired,
+    orderBy: PropTypes.string.isRequired,
+    searchTerm: PropTypes.string.isRequired,
+    setOrderBy: PropTypes.func.isRequired,
+    setSearchTerm: PropTypes.func.isRequired,
+    setView: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {

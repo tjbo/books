@@ -1,7 +1,6 @@
-
-import BOOKS from './_booksTypes'
 import axios from 'axios'
 import config from '../../config'
+import BOOKS from './_booksTypes'
 
 const BooksActions = {
     get() {
@@ -9,17 +8,18 @@ const BooksActions = {
             const state = getState().books
 
             if (state.searchTerm) {
-                // the request will be "stale" as this triggers on keypress in searchbar, so just cancel the last request 
+
+                // the request will be "stale" as this triggers on every keypress in searchbar, so cancel the last request 
                 if (state.cancelableRequest) {
                     state.cancelableRequest()
                 }
 
-                // make a new cancelToken for each request
-                const CancelToken = axios.CancelToken
                 const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=${config.apiKey1}`
 
                 try {
+                    const CancelToken = axios.CancelToken
                     const response = await axios.get(url, {
+                        // make a new cancelToken for each request
                         cancelToken: new CancelToken(function executor(cancelFunction) {
                             dispatch({
                                 type: BOOKS.GET_REQUESTED,

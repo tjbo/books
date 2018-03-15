@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Card, Header, List, Image, Button } from 'semantic-ui-react'
 
 export default function FavoriteBooksItem({ volumeInfo, remove, open }) {
@@ -18,7 +19,7 @@ export default function FavoriteBooksItem({ volumeInfo, remove, open }) {
                     <Header
                         as="h5"
                         color="blue"
-                        onClick={ open() }
+                        onClick={ open }
                         style={ { cursor: 'pointer' } }
                     >
                         { volumeInfo.title }
@@ -28,19 +29,26 @@ export default function FavoriteBooksItem({ volumeInfo, remove, open }) {
         }
     }
 
+    function renderRemoveButton() {
+        if (typeof remove === 'function') {
+            return (
+                <Button
+                    onClick={ remove }
+                    content="Remove"
+                    color="red"
+                    size="tiny"
+                    floated="right"
+                />
+            )
+        }
+    }
+
     return (
         <List.Item>
             <Card fluid>
                 <Card.Content>
                     { renderThumbnail() }
-                    <Button
-                        onClick={ remove }
-                        color="red"
-                        size="tiny"
-                        floated="right"
-                    >
-                        Remove
-                </Button>
+                    { renderRemoveButton() }
                 </Card.Content>
                 <Card.Content>
                     { renderTitle() }
@@ -48,4 +56,10 @@ export default function FavoriteBooksItem({ volumeInfo, remove, open }) {
             </Card>
         </List.Item >
     )
+}
+
+FavoriteBooksItem.propTypes = {
+    open: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
+    volumeInfo: PropTypes.object.isRequired
 }

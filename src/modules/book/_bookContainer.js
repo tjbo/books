@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { Button, Container } from 'semantic-ui-react'
+import { Button, Container, Message } from 'semantic-ui-react'
 import BookActions from './_bookActions'
 import BooksItem from '../books/booksItem'
 import FavoriteActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 
 class BookContainer extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.get(this.props.id)
     }
 
@@ -20,7 +20,9 @@ class BookContainer extends React.Component {
     }
 
     renderBook() {
-        if (this.props.isLoading) {
+        if (this.props.error) {
+            return <Message negative>{ this.props.error } </Message>
+        } else if (this.props.isLoading) {
             return <Loading />
         } else if (this.props.book) {
             const props = {
@@ -50,7 +52,8 @@ class BookContainer extends React.Component {
 
 BookContainer.propTypes = {
     add: PropTypes.func.isRequired,
-    book: PropTypes.object.isRequired,
+    book: PropTypes.object,
+    error: PropTypes.string,
     get: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,

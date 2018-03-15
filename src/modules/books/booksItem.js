@@ -1,7 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Button, Card, Image, Header } from 'semantic-ui-react'
 
-export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact' }) {
+export default function BooksItem({ volumeInfo, open, add, size = 'compact' }) {
+
     function renderPreviewLink() {
         if (volumeInfo.previewLink) {
             return (
@@ -30,7 +32,7 @@ export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact'
                 <Card.Content>
                     <div dangerouslySetInnerHTML={ { __html: volumeInfo.description } }></div>
                 </Card.Content>
-            )
+            ) // sometimes google returns HTML for this field...
         }
     }
 
@@ -87,6 +89,20 @@ export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact'
         }
     }
 
+    function renderAddButton() {
+        if (typeof add === 'function') {
+            return (
+                <Button
+                    floated={ (size === 'full' ? 'right' : 'left') }
+                    color="green"
+                    content="Add"
+                    onClick={ add }
+                    style={ { margin: '15px' } }
+                />
+            )
+        }
+    }
+
     return (
         <Card fluid>
             <Card.Content>
@@ -101,14 +117,15 @@ export default function BooksItemLarge({ volumeInfo, open, add, size = 'compact'
                 { renderPreviewLink() }
             </Card.Content>
             <Card.Description>
-                <Button onClick={ add }
-                    floated={ (size === 'full' ? 'right' : 'left') }
-                    color="green"
-                    style={ { margin: '15px' } }
-                >
-                    Add
-                </Button>
+                { renderAddButton() }
             </Card.Description>
         </Card >
     )
+}
+
+BooksItem.propTypes = {
+    add: PropTypes.func.isRequired,
+    open: PropTypes.func,
+    size: PropTypes.string.isRequired,
+    volumeInfo: PropTypes.object.isRequired
 }
