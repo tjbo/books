@@ -8,8 +8,14 @@ import FavoriteActions from '../favoriteBooks/_favoriteBooksActions'
 import Loading from '../../common/loading'
 
 class BookContainer extends React.Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.get(this.props.id)
+    }
+
+    componentWillUpdate(nextProps) {
+        if (nextProps.id !== this.props.id) {
+            this.props.get(nextProps.id)
+        }
     }
 
     renderBook() {
