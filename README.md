@@ -95,11 +95,13 @@ A couple things to note:
 ## POST MORTEM
 ## Did it go smoothly? 
 
-At the beginning of the project I read the requirements a few times; then went for a walk and thought about what I would do. After the walk I made some rough notes about what I would make.
+At the beginning of the project I read the requirements a few times; then went for a walk and thought about what I would do. After the walk I made some rough notes about what I would build.
 
 After that I built it in a pretty methodical manner.
 
 I would have liked to try out Jest more in my testing, however I am not super familiar with this library, so ended up using Enzyme.
+
+Overall I am pleased with how it turned out; I believe the code is clean, readable and well organized.
 
 ## Any surprises or lessons learned? 
 - [query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL locations.
