@@ -50,7 +50,7 @@ The Architexture was guided by the principles of [Unix Philosophy](https://en.wi
 - anything under the container is a “dumb” component
 - modules are encapsulated (though some actions are inevitably public for cross component communication):
  	
-     *  *for example the books container can call `FavoritesActions.Add()` on the `Favorites Module`, however the `Favorites Module` manages and updates it's own reducer*
+     *  *for example `BooksContainer` can call `FavoritesActions.Add()` on the `Favorites Module`, however the `Favorites Module` manages and updates it's own reducer*
 - since the modules are self contained they all get chunked to their own files; this is a good pattern for very large products as you only send down the wire what is nessacary
 
 ## NAMING CONVENTION
