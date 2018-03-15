@@ -60,12 +60,9 @@ Many projects name every file `reducer.js`, `container.js`, `index.js`, etc.
 
 For dev friendliness I errored on the side of caution and chose a naming structure like `favoriteBooks/_favoriteBooksContainer.js` 
 
-* (the underscore here denotes that the particular file is to do with redux state – most projects have a lot more dumb components)
+* the underscore here denotes that the particular file is to do with redux state
 
-Though the names end up much longer.
-
-This generally makes navigation of bigger projects easier when you browsing a repo online, or if you use a menu prompt to open files in your editor.
-
+Though the names end up much longer, this generally makes navigation of bigger projects easier when you browsing a repo online, or if you use a menu prompt to open files in your editor.
 
 ## OTHER LIBRARIES
 
