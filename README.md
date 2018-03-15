@@ -1,4 +1,4 @@
-# MyFavBooks.com
+# Books
 This is a demo project that uses the Google Books API with React and Redux.
 
 ### Installation
@@ -34,7 +34,7 @@ The broiler plate is primaryly in:
 
 
 ## APP STRUCTURE
-The Architexture was guided by the principles of Unix Philosophy [Unix Philosophy] (https://en.wikipedia.org/wiki/Unix_philosophy) and [Worse is Better] (https://en.wikipedia.org/wiki/Worse_is_better)
+The Architexture was guided by the principles of Unix Philosophy [Unix Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and [Worse is Better](https://en.wikipedia.org/wiki/Worse_is_better)
 
 ### In Redux/React terms, this means:
 
