@@ -1,9 +1,9 @@
 import BOOK from './_bookTypes'
 
 export const initialState = {
-    isLoading: false,
     book: null,
-    error: ''
+    error: '',
+    isLoading: false
 }
 
 export default function BookReducer(state = initialState, action) {
@@ -12,22 +12,22 @@ export default function BookReducer(state = initialState, action) {
         case BOOK.GET_REQUESTED: {
             return {
                 book: null,
-                isLoading: true,
-                error: ''
+                error: '',
+                isLoading: true
             }
         }
         case BOOK.GET_SUCCEEDED: {
             return {
                 book: payload,
-                isLoading: false,
-                error: ''
+                error: '',
+                isLoading: false
             }
         }
         case BOOK.GET_FAILED: {
             return {
                 book: null,
-                isLoading: false,
-                error: payload
+                error: payload,
+                isLoading: false
             }
         }
         default: {

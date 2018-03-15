@@ -15,6 +15,7 @@
     "lodash-es": "^4.17.7",
     "lodash.clonedeep": "^4.5.0",
     "lodash.sortby": "^4.7.0",
+    "prop-types": "^15.6.1",
     "query-string": "^5.1.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -37,6 +38,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "devDependencies": {
     "redux-test-utils": "^0.2.2"

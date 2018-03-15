@@ -1,7 +1,7 @@
-import BOOK from './_bookTypes'
-import { push } from 'react-router-redux'
 import axios from 'axios'
+import { push } from 'react-router-redux'
 import config from '../../config'
+import BOOK from './_bookTypes'
 
 const BookActions = {
     open(payload) {
@@ -29,7 +29,6 @@ const BookActions = {
                         payload: response.data
                     })
                 }
-
             } catch (error) {
                 dispatch({
                     type: BOOK.GET_FAILED,

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { Button, Container } from 'semantic-ui-react'
@@ -45,6 +46,15 @@ class BookContainer extends React.Component {
             </Container>
         )
     }
+}
+
+BookContainer.propTypes = {
+    add: PropTypes.func.isRequired,
+    book: PropTypes.object.isRequired,
+    get: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
 }
 
 function mapStateToProps(state, ownProps) {
