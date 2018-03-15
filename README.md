@@ -87,12 +87,12 @@ At the beginning of the project I read the requirements a few times; then went f
 
 After that I built it in a pretty methodical manner.
 
-I would have liked to use Jest more in my testing, however I am not super familiar with this library, so ended up using Enzyme.
+I would have liked to try out Jest more in my testing, however I am not super familiar with this library, so ended up using Enzyme.
 
 ## Any surprises or lessons learned? 
-[query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL locations.
+- [query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL locations.
 
-This is my only time using [Semantic UI React](https://react.semantic-ui.com/introduction) but found it very easy to use, and I think it is also very "semantic" which makes the code more readable.
+- This is my only time using [Semantic UI React](https://react.semantic-ui.com/introduction) but found it very easy to use, and I think it is also very "semantic" which makes the code more readable, I now much prefer it over React Bootstrap for prototyping and small projects
 
 ## Should we implement a production ready version of what you built, or would you do things differently next time? 
 
