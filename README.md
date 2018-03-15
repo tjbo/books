@@ -62,7 +62,7 @@ For dev friendliness I errored on the side of caution and chose a naming structu
 
 * the underscore here denotes that the particular file is to do with redux state
 
-Though the names end up much longer, this generally makes navigation of bigger projects easier when you browsing a repo online, or if you use a menu prompt to open files in your editor.
+Though the names end up much longer, this generally makes navigation of bigger projects easier when you are browsing a repo online, or if you use a menu prompt to open files in your editor.
 
 ## OTHER LIBRARIES
 
@@ -84,7 +84,7 @@ For example, to make every view linkable / reloadable, I had to do a request on 
 
 A couple things to note:
 
-- on keypress in the search bar I had to cancel prior requests, or else the UI updates would be very funky and without cancelation there would also be potential race conditions on every keypress/network request
+- on keypress in the search bar I had to cancel prior requests, or else the UI updates would be very funky and without cancelation there would also be potential race conditions on every keypress/network event
 - fav book ids get added into the hash, as well as the other feature information orderBy, view and searchTerm 
 - because of this, the books reducer initializes on “window.location.hash”
 - I started out with an action to build the URL, but since this was so central to my app, I eventually moved it to `store.subscribe` in src/app, I felt this made more sense since every state change was effect the “window.location.hash” as de factor database.
@@ -95,7 +95,7 @@ A couple things to note:
 
 At the beginning of the project I read the requirements a few times; then went for a walk and thought about what I would do. After the walk I made some rough notes about what I would build.
 
-After that I built it in a pretty methodical manner.
+After that I built it in a very methodical manner.
 
 I would have liked to try out Jest more in my testing, however I am not super familiar with this library, so ended up using Enzyme.
 
@@ -105,6 +105,8 @@ Overall I am pleased with how it turned out; I believe the code is clean, readab
 - [query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL's
 
 - This is my first time time using [Semantic UI React](https://react.semantic-ui.com/introduction) but found it very easy to use, and I think it is also very "semantic" which makes the code more readable, I now much prefer it over React Bootstrap for prototyping and small projects
+
+- I found The Google API dashboard confusing from a usability perspective. I am always surprised that a big company like this can get things like this wrong; however maybe it's just because they have so many products.
 
 ## Should we implement a production ready version of what you built, or would you do things differently next time? 
 
