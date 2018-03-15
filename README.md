@@ -1,13 +1,20 @@
 # Books
 This is a demo project that uses the Google Books API with React and Redux.
 
+## Enhancements:
+
+- Sort books by ascending, descending, recently added*. Linkable (i.e. copy/paste browser
+url and same view displays).
+
+- Switchable layouts (from grid view to list view). Linkable.
+
+(**instead of recently added, publishedDate was used from the Google Books API*)
+
 ### Installation
 
-#### Step 1:
-Download the repo.
+- Download / Unzip the repo.
 
-#### Step 2:
-```yarn install```
+- ```yarn install```
 
 ### Run Local Dev
 ```yarn start``` 
