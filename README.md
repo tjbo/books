@@ -51,7 +51,8 @@ The Architexture was guided by the principles of [Unix Philosophy](https://en.wi
 - modules are encapsulated (though some actions are inevitably public for cross component communication):
  	
      *  *for example `BooksContainer` can call `FavoritesActions.Add()` on the `FavoritesModule`, however the `FavoritesModule` manages and updates it's own reducer*
-- since the modules are self contained they all get chunked to their own files; this is a good pattern for very large products as you only send down the wire what is nessacary
+- since the modules are self contained they all get chunked to their own files; this is a good pattern for very large products as you only send down the wire what is nessacary, also the relatively "loose coupling" of modules makes them easy to replace, modify or remove, much like a MicroServices Architexture.
+
 
 ## NAMING CONVENTION
 
