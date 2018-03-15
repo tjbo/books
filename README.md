@@ -1,7 +1,7 @@
 # Books
 This is a demo project that uses the Google Books API with React and Redux.
 
-## Enhancements:
+#### Selected Enhancements
 
 - Sort books by ascending, descending, recently added*. Linkable (i.e. copy/paste browser
 url and same view displays).
