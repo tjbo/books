@@ -41,7 +41,7 @@ The broiler plate is primaryly in:
 
 
 ## APP STRUCTURE
-The Architexture was guided by the principles of Unix Philosophy [Unix Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and [Worse is Better](https://en.wikipedia.org/wiki/Worse_is_better)
+The Architexture was guided by the principles of [Unix Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and [Worse is Better](https://en.wikipedia.org/wiki/Worse_is_better)
 
 ### In Redux/React terms, this means:
 
@@ -49,14 +49,19 @@ The Architexture was guided by the principles of Unix Philosophy [Unix Philosoph
 - each module has one container with connect()
 - anything under the container is a “dumb” component
 - modules are encapsulated (though some actions are inevitably public for cross component communication):
- 	*for example the books container can call Add on the Favourites Module, but Add will take care of managing it’s own state*
+ 	
+     *  *for example the books container can call `FavoritesActions.Add()` on the `Favorites Module`, however the `Favorites Module` manages and updates it's own reducer*
 - since the modules are self contained they all get chunked to their own files; this is a good pattern for very large products as you only send down the wire what is nessacary
 
 ## NAMING CONVENTION
 
-I’ve seen projects where every file was named reducer.js, container.js, index.js, etc. I’m generally not in love with this naming convention.
+Many projects name every file `reducer.js`, `container.js`, `index.js`, etc.
 
-I find for dev friendliness that I always error on the side of caution and choose to name things like `favoriteBooks/_favoriteBooksContainer.js` (the underscore here denotes that the particular file is to do with redux state – most projects have a lot more dumb components)
+For dev friendliness I errored on the side of caution and chose a naming structure like `favoriteBooks/_favoriteBooksContainer.js` 
+
+* (the underscore here denotes that the particular file is to do with redux state – most projects have a lot more dumb components)
+
+Though the names end up much longer.
 
 This generally makes navigation of bigger projects easier when you browsing a repo online, or if you use a menu prompt to open files in your editor.
 
@@ -67,7 +72,7 @@ When you `yarn install` you may realize you have to download the entire Universe
 
 I relied heavily on other modules so that I could be productive and produce something that is hopefully bug free in a short amount of time. 
 
-- Semantic React UI - for HTML/CSS
+- Semantic React UI (HTML/CSS)
 - Axios for requests
 - Redux Thunk for actions
 - query-string, because I am making the whole app linkable/stateful through the URL Hash
@@ -77,7 +82,7 @@ I decided to use the Google Books API for books data. This would have big implic
 
 Basically I came to think of Google Books API as my database; and so there is quite bit of work going on with requests, isLoading states and then sorting and displaying this data.
 
-To make every view linkable, I had to do a request on every mount.
+For example, to make every view linkable / reloadable, I had to do a request on every container mount.
 
 A couple things to note:
 
