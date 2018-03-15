@@ -11,22 +11,22 @@ const FavoriteBooksActions = {
 
             if (paramsFromRouter.favorites) {
 
-                dispatch({
-                    type: FAVORITE_BOOKS.GET_REQUESTED
-                })
-
-                const requests = []
-
-                for (let favorite of paramsFromRouter.favorites) {
-                    const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=${config.apiKey2}`
-                    requests.push(await axios.get(url, {
-                        validateStatus: function (status) {
-                            return status === 200
-                        }
-                    }))
-                }
-
                 try {
+                    const requests = []
+
+                    dispatch({
+                        type: FAVORITE_BOOKS.GET_REQUESTED
+                    })
+
+                    for (let favorite of paramsFromRouter.favorites) {
+                        const url = `https://www.googleapis.com/books/v1/volumes/${favorite}?key=${config.apiKey2}`
+                        requests.push(await axios.get(url, {
+                            validateStatus: function (status) {
+                                return status === 200
+                            }
+                        }))
+                    }
+
                     const allResponses = await Promise.all(requests)
 
                     for (let response of allResponses) {

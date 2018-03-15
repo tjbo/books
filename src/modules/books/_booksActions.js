@@ -11,21 +11,24 @@ const BooksActions = {
 
                 // the request will be "stale" as this triggers on every keypress in searchbar, so cancel the last request 
                 if (state.cancelableRequest) {
-                    state.cancelableRequest()
+                    state.cancelableRequest.cancel()
                 }
 
                 const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=${config.apiKey1}`
 
+                var CancelToken = axios.CancelToken
+                var source = CancelToken.source()
+
                 try {
-                    const CancelToken = axios.CancelToken
+
+                    dispatch({
+                        type: BOOKS.GET_REQUESTED,
+                        payload: source
+                    })
+
                     const response = await axios.get(url, {
                         // make a new cancelToken for each request
-                        cancelToken: new CancelToken(function executor(cancelFunction) {
-                            dispatch({
-                                type: BOOKS.GET_REQUESTED,
-                                payload: cancelFunction
-                            })
-                        }),
+                        cancelToken: source.token,
                         validateStatus: function (status) {
                             return status === 200
                         }

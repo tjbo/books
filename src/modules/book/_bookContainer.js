@@ -63,6 +63,7 @@ BookContainer.propTypes = {
 function mapStateToProps(state, ownProps) {
     return {
         book: state.book.book,
+        error: state.book.error,
         isLoading: state.book.isLoading,
         id: ownProps.match.params.id // the id here is coming from the router
     }
