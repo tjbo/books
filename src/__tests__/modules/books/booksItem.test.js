@@ -13,7 +13,7 @@ const defaultProps = {
     ...book,
     open: null,
     size: '',
-    add: null
+    add: () => { }
 }
 
 describe('books item component', () => {
@@ -40,7 +40,7 @@ describe('books item component', () => {
         const wrapper = mount((
             <BooksItem { ...props } />
         ))
-        wrapper.find('button').simulate('click');
+        wrapper.find('button').simulate('click')
         expect(onButtonClick.calledOnce).toEqual(true)
     })
 
@@ -50,7 +50,7 @@ describe('books item component', () => {
         const wrapper = mount((
             <BooksItem { ...props } />
         ))
-        wrapper.find('Header').simulate('click');
+        wrapper.find('Header').simulate('click')
         expect(onButtonClick.calledOnce).toEqual(true)
     })
 })

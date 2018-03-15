@@ -1,4 +1,3 @@
-import React from 'react'
 import FavoriteBooksActions from '../../../modules/favoriteBooks/_favoriteBooksActions'
 import FAVORITE_BOOKS from '../../../modules/favoriteBooks/_favoriteBooksTypes'
 import bookData from '../../../__mocks__/modules/favoriteBooks/favoriteBook'
@@ -20,4 +19,3 @@ describe('favorite books actions', () => {
         expect(FavoriteBooksActions.remove(bookData)).toEqual(expectedAction)
     })
 })
-

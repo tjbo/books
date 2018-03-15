@@ -7,7 +7,9 @@
         "PropTypes": true,
         "test": true,
         "expect": true,
-        "it": true
+        "it": true,
+        "describe": true,
+        "beforeEach": true
     },
     "parserOptions": {
         "ecmaVersion": 7,

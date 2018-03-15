@@ -4,15 +4,14 @@ import Adapter from 'enzyme-adapter-react-15'
 import { shallow, mount } from 'enzyme'
 import { configure } from 'enzyme'
 import { cloneDeep } from 'lodash'
-import listOfItems from '../../../__mocks__/modules/books/books'
 import FavoriteBooksItem from '../../../modules/favoriteBooks/favoriteBooksItem'
 import favoriteBookData from '../../../__mocks__/modules/favoriteBooks/favoriteBook'
-import { list } from 'postcss';
 
 configure({ adapter: new Adapter() })
 
 const defaultProps = {
     ...favoriteBookData,
+    open: () => { },
     remove: () => { }
 }
 
@@ -31,7 +30,7 @@ describe('books item component', () => {
         const wrapper = mount((
             <FavoriteBooksItem { ...props } />
         ))
-        wrapper.find('button').simulate('click');
+        wrapper.find('button').simulate('click')
         expect(onButtonClick.calledOnce).toEqual(true)
     })
 

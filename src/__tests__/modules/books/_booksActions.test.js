@@ -1,7 +1,5 @@
-import React from 'react'
 import BooksActions from '../../../modules/books/_booksActions'
 import BOOKS from '../../../modules/books/_booksTypes'
-import booksData from '../../../__mocks__/modules/books/books'
 
 describe('books actions', () => {
     it('should create an action to setOrderBy', () => {
@@ -28,4 +26,3 @@ describe('books actions', () => {
         expect(BooksActions.setView('grid')).toEqual(expectedAction)
     })
 })
-

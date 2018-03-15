@@ -1,9 +1,6 @@
 import BOOKS from '../../../modules/books/_booksTypes'
 import booksData from '../../../__mocks__/modules/books/books'
-
 import { default as reducer, initialState, sortBooks } from '../../../modules/books/_booksReducer'
-
-const initialStateWithDefaults = { ...initialState, view: "list" }
 
 describe('books reducer', () => {
     it('should return the initial state', () => {

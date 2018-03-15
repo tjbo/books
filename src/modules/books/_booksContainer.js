@@ -151,9 +151,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        init(payload) {
-            dispatch(BooksActions.init(payload))
-        },
         get(payload) {
             dispatch(BooksActions.get(payload))
         },

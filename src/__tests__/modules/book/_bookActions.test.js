@@ -1,11 +1,9 @@
-import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import BookActions from '../../../modules/book/_bookActions'
 import BOOK from '../../../modules/book/_bookTypes'
 import bookData from '../../../__mocks__/modules/book/book'
 import MockAdapter from 'axios-mock-adapter'
 import thunk from 'redux-thunk'
-import config from '../../../config'
 import axios from 'axios'
 
 const mockStore = configureMockStore([thunk])
@@ -70,4 +68,3 @@ describe('books actions', () => {
         })
     })
 })
-

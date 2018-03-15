@@ -52,6 +52,7 @@ describe('favorite books reducer', () => {
             payload: bookData
         })).toEqual(
             {
+                ...initialState,
                 favorites: new Map([[bookData.id, bookData]])
             }
         )
@@ -64,6 +65,7 @@ describe('favorite books reducer', () => {
                 id: bookData.id
             }
         })).toEqual({
+            ...initialState,
             favorites: new Map()
         })
     })

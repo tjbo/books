@@ -10,22 +10,31 @@ configure({ adapter: new Adapter() })
 
 const shallowWithStore = (component, store) => {
     const context = {
-        store,
-    };
-    return shallow(component, { context });
+        store
+    }
+    return shallow(component, { context })
+}
+
+const defaultState = {
+    books: [],
+    error: '',
+    isLoading: false,
+    view: 'list',
+    orderBy: 'asc',
+    searchTerm: ''
 }
 
 describe('books container', () => {
-    it("should render isLoading", () => {
+    it('should render isLoading', () => {
         const testState = {
             books: {
-                books: [],
+                ...defaultState,
                 isLoading: true
-
             }
         }
+
         const store = createMockStore(testState)
-        const component = shallowWithStore(<BooksContainer />, store);
+        const component = shallowWithStore(<BooksContainer />, store)
 
         expect(typeof component).toBe('object')
         expect(component.dive().find('Segment')).toHaveLength(2)
@@ -35,18 +44,17 @@ describe('books container', () => {
         expect(component.dive().find('Loading')).toHaveLength(1)
     })
 
-    it("should render many books", () => {
+    it('should render many books', () => {
         const testState = {
             books: {
-                books: booksData.items,
-                isLoading: false
-
+                ...defaultState,
+                books: booksData.items
             }
         }
         const store = createMockStore(testState)
-        const component = shallowWithStore(<BooksContainer />, store);
 
-        expect(typeof component).toBe('object')
+        const component = shallowWithStore(<BooksContainer />, store)
+
         expect(component.dive().find('Segment')).toHaveLength(2)
         expect(component.dive().find('Search')).toHaveLength(1)
         expect(component.dive().find('Select')).toHaveLength(2)
