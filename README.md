@@ -104,16 +104,16 @@ I would have liked to try out Jest more in my testing, however I am not super fa
 Overall I am pleased with how it turned out; I believe the code is clean, readable and well organized.
 
 ## Any surprises or lessons learned? 
-- [query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL locations.
+- [query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL's
 
-- This is my only time using [Semantic UI React](https://react.semantic-ui.com/introduction) but found it very easy to use, and I think it is also very "semantic" which makes the code more readable, I now much prefer it over React Bootstrap for prototyping and small projects
+- This is my first time time using [Semantic UI React](https://react.semantic-ui.com/introduction) but found it very easy to use, and I think it is also very "semantic" which makes the code more readable, I now much prefer it over React Bootstrap for prototyping and small projects
 
 ## Should we implement a production ready version of what you built, or would you do things differently next time? 
 
 I think the code is strong enough to be used in production, however I’d tweak a few things:
 
 -  I’d get a designer UI/UX pro to review it
-- I’d make the loading of the views a little smoother
+- I’d make the loading of the views a little smoother 
 - I’d upgrade some of the modules in package.json
 - I’m confident in my QA, but I’d get some other people to look at it
 - The Google API has a daily limit of 1000 requests
