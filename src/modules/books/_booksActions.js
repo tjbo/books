@@ -16,8 +16,8 @@ const BooksActions = {
 
                 const url = `https://www.googleapis.com/books/v1/volumes?q=${state.searchTerm}&key=${config.apiKey1}`
 
-                var CancelToken = axios.CancelToken
-                var source = CancelToken.source()
+                const CancelToken = axios.CancelToken
+                const source = CancelToken.source()
 
                 try {
 
