@@ -31,17 +31,16 @@ url and same view displays).
 ## BROILER PLATE
 This project uses Create React App with some broiler plate that I’ve used with success on other projects before. 
 
-The broiler plate is primaryly in:
+The broiler plate is primarily in:
 
 - `src/app.js`
 - `src/index.js`
-- `src/modules.js` (chunking modules is probably total overkill for this project, but this was in my prior broiler plate, so I just left it)
+- `src/modules.js` 
 - `src/reducer.js`
 - `src/common`
 
-
 ## APP STRUCTURE
-The Architexture was guided by the principles of [Unix Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and [Worse is Better](https://en.wikipedia.org/wiki/Worse_is_better)
+The Architecture was guided by the principles of [Unix Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and [Worse is Better](https://en.wikipedia.org/wiki/Worse_is_better)
 
 ### In Redux/React terms, this means:
 
@@ -50,23 +49,20 @@ The Architexture was guided by the principles of [Unix Philosophy](https://en.wi
 - anything under the container is a “dumb” component
 - modules are encapsulated (though some actions are inevitably public for cross component communication):
  	
-     *  *for example `BooksContainer` can call `FavoritesActions.Add()` on the `FavoritesModule`, however the `FavoritesModule` manages and updates it's own reducer*
-- since the modules are self contained they all get chunked to their own files; this is a good pattern for very large products as you only send down the wire what is nessacary, also the relatively "loose coupling" of modules makes them easy to replace, modify or remove, much like a MicroServices Architexture.
-
+	 *  *for example `BooksContainer` can call `FavoritesActions.Add()` on the `FavoritesModule`, however the `FavoritesModule` manages and updates it's own reducer*
+- since the modules are self contained they all get chunked to their own files; this is a good pattern for very large products as you only send down the wire what is nessacary. The relatively "loose coupling" of modules makes them easy to replace, modify or remove.
 
 ## NAMING CONVENTION
 
 Many projects name every file `reducer.js`, `container.js`, `index.js`, etc.
 
-For dev friendliness I errored on the side of caution and chose a naming structure like `favoriteBooks/_favoriteBooksContainer.js` 
+For dev friendliness I chose a more verbose naming structure, for example `favoriteBooks/_favoriteBooksContainer.js` 
 
-* the underscore here denotes that the particular file is to do with redux state
+* the underscore here denotes that the particular file is to do with Redux State
 
 Though the names end up much longer, this generally makes navigation of bigger projects easier when you are browsing a repo online, or if you use a menu prompt to open files in your editor.
 
 ## OTHER LIBRARIES
-
-When you `yarn install` you may realize you have to download the entire Universe.
 
 I relied heavily on other modules so that I could be productive and produce something that is hopefully bug free in a short amount of time. 
 
@@ -76,7 +72,7 @@ I relied heavily on other modules so that I could be productive and produce some
 - query-string, because I am making the whole app linkable/stateful through the URL Hash
 
 ## DATA
-I decided to use the Google Books API for books data. This would have big implications everywhere, especially since I chose the “linkable URL” option for a feature. 
+I decided to use the Google Books API for books data. This would have implications everywhere, especially since I also chose the “linkable URL” option for a feature. 
 
 Basically I came to think of Google Books API as my database; and so there is quite bit of work going on with requests, isLoading states and then sorting and displaying this data.
 
@@ -93,29 +89,28 @@ A couple things to note:
 ## POST MORTEM
 ## Did it go smoothly? 
 
-At the beginning of the project I read the requirements a few times; then went for a walk and thought about what I would do. After the walk I made some rough notes about what I would build.
+At the beginning of the project I read the requirements a few times; then went for a walk and thought about what I would build. After the walk I made some rough notes and had a pretty good idea how this project would go.
 
-After that I built it in a very methodical manner.
+After that I built the project in a very methodical manner.
 
 I would have liked to try out Jest more in my testing, however I am not super familiar with this library, so ended up using Enzyme.
 
-Overall I am pleased with how it turned out; I believe the code is clean, readable and well organized.
+Overall I am pleased with how it turned out.
 
 ## Any surprises or lessons learned? 
 - [query-string](https://www.npmjs.com/package/query-string) is my new goto for working with URL's
 
 - This is my first time time using [Semantic UI React](https://react.semantic-ui.com/introduction) but found it very easy to use, and I think it is also very "semantic" which makes the code more readable, I now much prefer it over React Bootstrap for prototyping and small projects
 
-- I found The Google API dashboard confusing from a usability perspective. I am always surprised that a big company like this can get things like this wrong; however maybe it's just because they have so many products.
+- When testing Axios requests, I ran into a small Axios bug, but was able to get around it by mocking it in Jest
 
 ## Should we implement a production ready version of what you built, or would you do things differently next time? 
 
 I think the code is strong enough to be used in production, however I’d tweak a few things:
 
--  I’d get a designer UI/UX pro to review it
-- I’d make the loading of the views a little smoother 
-- I’d upgrade some of the modules in package.json
-- I’m confident in my QA, but I’d get some other people to look at it
+- a UI/UX pro to review the graphics
+- make the loading of the views a little smoother 
+- upgrade some of the modules in package.json
 - The Google API has a daily limit of 1000 requests
 - right now the CSS is loaded in the index file, for a production build with Webpack this would have to be added into the build script
 

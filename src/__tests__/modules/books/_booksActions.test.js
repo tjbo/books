@@ -3,19 +3,18 @@ import BooksActions from '../../../modules/books/_booksActions'
 import BOOKS from '../../../modules/books/_booksTypes'
 import MockAdapter from 'axios-mock-adapter'
 import thunk from 'redux-thunk'
-import axios from 'axios'
 import books from '../../../__mocks__/modules/books/books'
 
-// not sure if this is the best way to mock this token, first time I've really used it. ;)
+// not sure if this is the best way to mock this token, first time I've really used Jest. ;)
 // if I continue to use jest, I'd revist this to make sure I've done it correctly
 jest.unmock('axios')
-
 const mockedAxios = require('axios')
 
-// even after mocking it, I was still having problems, and it turns out it's a bug with axios
+// even after mocking it, I was still having problems, and it turns out this was a problem with axios
 // so this is a hack to make the test pass... would probably have to submit a PR to axios to fix this properly, or 
 // re-code the way cancel tokens are assigned and tracked to make this test pass
 
+// here is some more info about the axios issue that came up:
 // https://github.com/axios/axios/issues/978
 // https://github.com/axios/axios/issues/993
 
