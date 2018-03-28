@@ -83,7 +83,7 @@ A couple things to note:
 - on keypress in the search bar I had to cancel prior requests, or else the UI updates would be very funky and without cancelation there would also be potential race conditions on every keypress/network event
 - fav book ids get added into the hash, as well as the other feature information orderBy, view and searchTerm 
 - because of this, the books reducer initializes on “window.location.hash”
-- I started out with an action to build the URL, but since this was so central to my app, I eventually moved it to `store.subscribe` in src/app, I felt this made more sense since every state change was effect the “window.location.hash” as de factor database.
+- I started out with an action to build the URL, but since this was so central to my app, I eventually moved it to `store.subscribe` in src/app, I felt this made more sense since every state change was in effect “window.location.hash” the (defacto database).
 
 
 ## POST MORTEM
